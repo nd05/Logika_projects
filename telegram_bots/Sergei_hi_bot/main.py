@@ -26,8 +26,12 @@ def help(message):
 
 @bot.callback_query_handler(func=lambda call:True)
 def callback_inline(call):
-    if call.data == "1":
-        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text = "help^2", reply_markup=keyboards.inMenu1)
+    if call.data == "1" or call.data == "back1":
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text = "help²", reply_markup=keyboards.inInfoMenu)
+    if call.data == "2":
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text = "Other way to go", reply_markup=keyboards.inHelpMenu)
+    if call.data == "11":
+        bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text = "This is your data:\n    username: " + str(call.from_user.username)+ "\n    name: " + str(call.from_user.first_name)+"\n    last_name: " + str(call.from_user.last_name) + "\n    premium status: " + str(call.from_user.is_premium), reply_markup=keyboards.inHelpMenu)
     if call.data == "back":
         bot.edit_message_text(chat_id=call.message.chat.id,message_id=call.message.message_id, text = "help", reply_markup=keyboards.inMenu)
 
